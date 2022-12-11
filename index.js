@@ -3,7 +3,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
-const cookieParser = require("cookie-parser");
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
@@ -16,7 +15,6 @@ app.use(
 );
 app.use(express.json());
 
-app.use(cookieParser());
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoute);
 

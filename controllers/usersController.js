@@ -37,12 +37,7 @@ module.exports.register = async (req, res, next) => {
     });
     const token = createToken(user._id);
     delete user.password;
-    res.cookie("jwt", token, {
-      withCredentials: true,
-      htppOnly: false,
-      maxAge: maxAge * 1000,
-    });
-    return res.json({ status: true, user });
+    return res.json({ status: true, user, token });
   } catch (ex) {
     next(ex);
   }
@@ -61,12 +56,7 @@ module.exports.login = async (req, res, next) => {
     }
     const token = createToken(user._id);
     delete user.password;
-    res.cookie("jwt", token, {
-      withCredentials: true,
-      htppOnly: false,
-      maxAge: maxAge * 1000,
-    });
-    return res.status(201).json({ status: true, user });
+    return res.status(201).json({ status: true, user, token });
   } catch (ex) {
     next(ex);
   }
